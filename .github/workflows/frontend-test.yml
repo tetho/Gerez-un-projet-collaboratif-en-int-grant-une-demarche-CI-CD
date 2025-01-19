@@ -25,6 +25,11 @@ jobs:
               run : |
                 cd front
                 npm install
+
+            - name: Install Angular CLI
+              run: |
+                cd front
+                npm install -g @angular/cli
               
             - name: Run tests with test coverage report
               run: |
