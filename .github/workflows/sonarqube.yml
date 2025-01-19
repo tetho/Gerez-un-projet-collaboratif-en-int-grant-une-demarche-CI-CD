@@ -36,7 +36,7 @@ jobs:
             sonar.jacoco.reportPaths=back/target/site/jacoco/jacoco.xml
 
   frontend-sonarqube:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Clone the repository into the GitHub Actions runner environment
