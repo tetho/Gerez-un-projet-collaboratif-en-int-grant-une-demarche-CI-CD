@@ -42,11 +42,10 @@ jobs:
                 cd front
                 npx ng build --configuration=production
 
-            - name: Start Angular app in the background
+            - name: Start Angular app
               run: |
                 cd front
-                npx ng serve --configuration=production --port=4200 &
-                sleep 30
+                npx ng serve --configuration=production --port=4200
                 npx wait-on http://localhost:4200 --timeout 60000 --interval 5000
 
             - name: Run E2E tests
