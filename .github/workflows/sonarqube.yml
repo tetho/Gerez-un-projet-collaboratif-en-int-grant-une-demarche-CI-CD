@@ -50,6 +50,12 @@ jobs:
         with: 
           node-version: 18
 
+      - name: Set up JDK 17 for Front-end
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: zulu
+
       - name: Set SONAR_TOKEN as environment variable
         run: echo "SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}" >> $GITHUB_ENV
 
