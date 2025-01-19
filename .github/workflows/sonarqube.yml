@@ -23,6 +23,9 @@ jobs:
           java-version: 17
           distribution: zulu
 
+      - name: Set JAVA_HOME to Java 17
+        run: echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> $GITHUB_ENV
+
       - name: Set SONAR_TOKEN as environment variable
         run: echo "SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}" >> $GITHUB_ENV
 
@@ -55,6 +58,9 @@ jobs:
         with:
           java-version: 17
           distribution: zulu
+
+      - name: Set JAVA_HOME to Java 17
+        run: echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> $GITHUB_ENV
 
       - name: Set SONAR_TOKEN as environment variable
         run: echo "SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}" >> $GITHUB_ENV
