@@ -1,8 +1,7 @@
 name: Back-end tests and Jacoco coverage report
 
 on:
-    # Trigger the workflow on push for the main branch
-    # and pull request for the main branch
+    workflow_dispatch:
     push:
         branches:
             - main
