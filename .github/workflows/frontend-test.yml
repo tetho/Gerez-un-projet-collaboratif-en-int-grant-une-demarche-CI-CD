@@ -1,0 +1,38 @@
+name: Front-end tests and test coverage report
+
+on:
+    workflow_dispatch:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+jobs:
+    frontend-tests:
+        runs-on: windows-latest
+        
+        steps:
+            - name : Clone the repository into the GitHub Actions runner environment
+              uses: actions/checkout@v3
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with: 
+                node-version: 16
+
+            - name : Install dependencies
+              run : |
+                cd front
+                npm install
+              
+            - name: Run tests with test coverage report
+              run: |
+                cd front
+                ng test --watch=false --code-coverage=true
+                
+            - name: Upload coverage report
+              uses: actions/upload-artifact@v3
+              with:
+                name: angular-coverage-report
+                path: front/coverage/*
