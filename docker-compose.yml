@@ -37,6 +37,7 @@ services:
       - SONARQUBE_JDBC_URL=jdbc:mysql://db:3306/mydb
       - SONARQUBE_JDBC_USERNAME=user
       - SONARQUBE_JDBC_PASSWORD=password
+      - SONAR_JAVA_VERSION=17
     depends_on:
       - db
 
