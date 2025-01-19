@@ -23,6 +23,9 @@ jobs:
           java-version: 17
           distribution: zulu
 
+      - name: Set SONAR_TOKEN as environment variable
+        run: echo "SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}" >> $GITHUB_ENV
+
       - name: SonarQube Analysis (Back-end)
         uses: sonarsource/sonarcloud-github-action@v1
         with:
@@ -46,6 +49,9 @@ jobs:
         uses: actions/setup-node@v3
         with: 
           node-version: 18
+
+      - name: Set SONAR_TOKEN as environment variable
+        run: echo "SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}" >> $GITHUB_ENV
 
       - name: SonarQube Analysis (Front-end)
         uses: sonarsource/sonarcloud-github-action@v1
