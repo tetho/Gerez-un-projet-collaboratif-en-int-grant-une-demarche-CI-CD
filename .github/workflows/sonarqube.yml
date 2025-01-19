@@ -1,0 +1,60 @@
+name: SonarQube Analysis
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  backend-sonarqube:
+    runs-on: windows-latest
+
+    steps:
+      - name: Clone the repository into the GitHub Actions runner environment
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with: 
+          java-version: 17
+          distribution: zulu
+
+      - name: SonarQube Analysis (Back-end)
+        uses: sonarsource/sonarcloud-github-action@v1
+        with:
+          organization: OpenClassrooms
+          projectKey: openclassrooms10
+          token: ${{ secrets.SONAR_TOKEN }}
+          extraProperties: |
+            sonar.sources=back/src/main/java
+            sonar.tests=back/src/test/java
+            sonar.junit.reportsPath=back/target/test-classes
+            sonar.jacoco.reportPaths=back/target/site/jacoco/jacoco.xml
+
+  frontend-sonarqube:
+    runs-on: windows-latest
+
+    steps:
+      - name: Clone the repository into the GitHub Actions runner environment
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 18
+
+      - name: SonarQube Analysis (Front-end)
+        uses: sonarsource/sonarcloud-github-action@v1
+        with:
+          organization: OpenClassrooms
+          projectKey: openclassrooms10
+          token: ${{ secrets.SONAR_TOKEN }}
+          extraProperties: |
+            sonar.sources=front/src/app
+            sonar.tests=front/src/app
+            sonar.javascript.lcov.reportPaths=front/coverage/lcov-report/lcov-report.json
+
