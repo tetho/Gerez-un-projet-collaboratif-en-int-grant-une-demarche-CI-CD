@@ -19,18 +19,13 @@ jobs:
             - name: Set up Node.js
               uses: actions/setup-node@v3
               with: 
-                node-version: 16
+                node-version: 18
 
             - name : Install dependencies
               run : |
                 cd front
                 npm install
 
-            - name: Install Angular CLI
-              run: |
-                cd front
-                npm install -g @angular/cli
-              
             - name: Run tests with test coverage report
               run: |
                 cd front
