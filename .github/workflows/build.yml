@@ -33,6 +33,5 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Build and analyze
         env:
-           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-           SONAR_SECURITY_TOKEN: ${{ secrets.SONAR_SECURITY_TOKEN }}
+           SONAR_TOKEN: ${{ secrets.SONAR_SECURITY_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=tetho_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD -f back/pom.xml
