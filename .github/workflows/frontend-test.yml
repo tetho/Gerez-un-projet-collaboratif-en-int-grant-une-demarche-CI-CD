@@ -46,7 +46,7 @@ jobs:
               run: |
                 cd front
                 npx ng serve --configuration=production --port=4200 &
-                npx wait-on http://localhost:4200
+                npx wait-on http://localhost:4200 --timeout 60000 --interval 5000
 
             - name: Run E2E tests
               run: |
