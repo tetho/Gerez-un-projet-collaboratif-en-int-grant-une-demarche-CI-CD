@@ -7,8 +7,8 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  backend-sonar:
-    runs-on: ubuntu-latest
+  sonar:
+    runs-on: self-hosted
     
     steps:
       - name: Clone the repository into the GitHub Actions runner environment
