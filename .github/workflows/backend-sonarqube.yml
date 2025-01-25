@@ -28,7 +28,7 @@ jobs:
       - name: Run SonarQube Analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-             -Dsonar.projectKey=Projet-10-OpenClassrooms \
-             -Dsonar.host.url=http://localhost:9000 \
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar 
+             -Dsonar.projectKey=Projet-10-OpenClassrooms 
+             -Dsonar.host.url=http://localhost:9000 
              -f back/pom.xml
