@@ -42,12 +42,12 @@ jobs:
               env:
                 SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
               working-directory: back
-              run: 
+              run: |
                mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
                 -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD \
                 -Dsonar.organization=tetho \
-                -Dsonar.host.url=https://sonarcloud.io \
                 -Dsonar.branch.name=${{ github.ref_name }} \
+                -Dsonar.host.url=https://sonarcloud.io \
                 -Dsonar.java.binaries=target/classes \
                 -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml \
                 -Dsonar.java.coveragePlugin=jacoco \
