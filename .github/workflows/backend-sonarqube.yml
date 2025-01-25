@@ -34,5 +34,6 @@ jobs:
         run: mvn clean verify 
              -Dsonar.projectKey=Projet-10-OpenClassrooms 
              -Dsonar.host.url=http://localhost:9000
+             -Dsonar.login=${{ secrets.SONAR_TOKEN }} 
              -f back/pom.xml
-             org.sonarsource.scanner.maven:sonar-maven-plugin:sonar 
+             org.sonarsource.scanner.maven:sonar-maven-plugin:5.0.0.4389:sonar 
