@@ -43,5 +43,5 @@ jobs:
                 SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
               run: |
                 cd back
-                mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD
+                mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD -Dsonar.branch.name=main
                 
