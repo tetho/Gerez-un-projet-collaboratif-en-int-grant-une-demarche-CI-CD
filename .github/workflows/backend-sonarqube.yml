@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, reopened]
 jobs:
   sonar:
-    runs-on: self-hosted
+    runs-on: windows-latest
     
     steps:
       - name: Clone the repository into the GitHub Actions runner environment
@@ -19,6 +19,9 @@ jobs:
         with: 
            java-version: 17
            distribution: zulu
+
+      - name: Allow script execution on Windows
+        run: Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
 
       - name : Install dependencies
         run : |
