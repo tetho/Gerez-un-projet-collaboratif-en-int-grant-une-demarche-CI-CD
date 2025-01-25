@@ -1,4 +1,4 @@
-winame: Back-end SonarQube Analysis
+name: Back-end SonarQube Analysis
 on:
   workflow_dispatch:
   push:
