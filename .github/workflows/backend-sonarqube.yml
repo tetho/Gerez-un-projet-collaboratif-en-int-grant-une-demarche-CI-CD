@@ -10,7 +10,7 @@ on:
             - main
 jobs:
     sonarqube:
-        runs-on: windows-latest
+        runs-on: ubuntu-latest
         
         steps:
             - name : Clone the repository into the GitHub Actions runner environment
@@ -41,7 +41,11 @@ jobs:
             - name: Build and analyze
               env:
                 SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+              working-directory: back
               run: |
-                cd back
-                mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD -Dsonar.branch.name=main
+               mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+                -Dsonar.projectKey=com.openclassrooms:bobapp \
+                -Dsonar.organization=tetho \
+                -Dsonar.branch.name=${{ github.ref_name }} \
+                -Dsonar.host.url=https://sonarcloud.io
                 
