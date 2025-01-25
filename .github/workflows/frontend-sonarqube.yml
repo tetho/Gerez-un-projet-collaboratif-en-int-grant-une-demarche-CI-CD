@@ -47,11 +47,8 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL_FRONTEND }}
         run: |
           cd front
-          sonar-scanner 
+          npx sonar-scanner 
             -Dsonar.projectKey=Projet-10-OpenClassrooms-Front-end 
-            -Dsonar.organization=your-sonar-org 
-            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL_FRONTEND }} 
-            -Dsonar.login=${{ secrets.SONAR_TOKEN_FRONTEND }} 
             -Dsonar.sources=src 
             -Dsonar.tests=src 
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov-report/index-lcov-report.txt
