@@ -10,32 +10,32 @@ on:
             - main
 jobs:
     frontend-tests:
-        runs-on: windows-latest
+        runs-on: ubuntu-latest
         
         steps:
             - name : Clone the repository into the GitHub Actions runner environment
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Set up Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with: 
                 node-version: 18
 
             - name : Install dependencies
-              run : |
-                cd front
+              working-directory: front
+              run : 
                 npm install
             
             - name: Run SonarCloud analysis
               env:
                 SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Assurez-vous de configurer ce secret dans GitHub
+              working-directory: front
               run: |
-                cd front
-                npm install -g sonar-scanner
-                sonar-scanner 
-                  -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD 
-                  -Dsonar.organization=tetho 
-                  -Dsonar.host.url=https://sonarcloud.io 
-                  -Dsonar.sources=src 
-                  -Dsonar.exclusions=**/*.spec.ts
+                npx sonar-scanner \
+                  -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD \
+                  -Dsonar.organization=tetho \
+                  -Dsonar.host.url=https://sonarcloud.io \
+                  -Dsonar.sources=src \
+                  -Dsonar.exclusions=**/*.spec.ts \
+                  -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
             
