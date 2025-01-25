@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, reopened]
 jobs:
   backend-sonar:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     
     steps:
       - name: Clone the repository into the GitHub Actions runner environment
@@ -30,4 +30,5 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
              -Dsonar.projectKey=Projet-10-OpenClassrooms \
-             -Dsonar.host.url=http://localhost:9000
+             -Dsonar.host.url=http://localhost:9000 \
+             -f back/pom.xml
