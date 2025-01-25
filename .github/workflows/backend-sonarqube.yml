@@ -32,4 +32,4 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACKEND }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL_BACKEND }}
-        run: mvn clean verify -Dsonar.projectKey=Projet-10-OpenClassrooms -Dsonar.host.url${{ secrets.SONAR_HOST_URL_BACKEND }} -Dsonar.login=${{ secrets.SONAR_TOKEN_BACKEND }} -f back/pom.xml
+        run: mvn clean verify -Dsonar.projectKey=Projet-10-OpenClassrooms -f back/pom.xml
