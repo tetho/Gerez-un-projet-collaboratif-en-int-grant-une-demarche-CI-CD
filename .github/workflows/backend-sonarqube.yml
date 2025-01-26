@@ -27,7 +27,7 @@ jobs:
             - name: Install dependencies
               working-directory: back
               run: 
-                mvn clean install
+                mvn clean install -U
               
             - name: Run tests with Jacoco coverage report
               working-directory: back
