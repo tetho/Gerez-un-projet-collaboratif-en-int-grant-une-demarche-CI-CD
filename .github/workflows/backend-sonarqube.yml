@@ -39,7 +39,7 @@ jobs:
                 SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
               working-directory: back
               run:
-               mvn verify sonar:sonar \
+               mvn verify sonar:sonar -X \
                  -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD \
                  -Dsonar.organization=tetho \
                  -Dsonar.host.url=https://sonarcloud.io \
