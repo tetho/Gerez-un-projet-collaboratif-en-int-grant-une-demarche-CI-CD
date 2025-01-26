@@ -35,7 +35,8 @@ jobs:
               env:
                 SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Assurez-vous de configurer ce secret dans GitHub
               working-directory: front
-              run: 
+              run: |
+                npm install -g sonar-scanner
                 npx sonar-scanner \
                   -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD \
                   -Dsonar.organization=tetho \
