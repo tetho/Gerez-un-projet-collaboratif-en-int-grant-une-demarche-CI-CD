@@ -10,7 +10,7 @@ on:
             - main
 jobs:
     tests:
-        runs-on: ubuntu-24.04
+        runs-on: ubuntu-latest
         
         steps:
             - name: Clone the repository into the GitHub Actions runner environment
