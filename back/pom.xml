@@ -24,10 +24,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<properties>
-	  <sonar.organization>tetho</sonar.organization>
-	  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-	</properties>
 	<build>
 		<plugins>
 			<plugin>
