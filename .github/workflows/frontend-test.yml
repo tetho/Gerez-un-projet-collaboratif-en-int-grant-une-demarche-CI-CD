@@ -1,4 +1,4 @@
-name: Front-end tests and test coverage report
+name: Front-end tests and coverage report
 
 on:
     workflow_dispatch:
@@ -10,20 +10,20 @@ on:
             - main
 jobs:
     frontend-tests:
-        runs-on: windows-latest
+        runs-on: ubuntu-24.04
         
         steps:
             - name: Clone the repository into the GitHub Actions runner environment
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Set up Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with: 
                 node-version: 18
 
-            - name : Install dependencies
-              run : |
-                cd front
+            - name: Install dependencies
+              working-directory: front
+              run:
                 npm install
 
             - name: Run tests with test coverage report
@@ -32,11 +32,11 @@ jobs:
                 npx ng test --watch=false --code-coverage=true
                 
             - name: Upload coverage report
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                 working-directory: front
                 name: angular-coverage-report
-                path: coverage/*
+                path: front/coverage/*
 
             - name: Build the Angular app for E2E tests
               working-directory: front
@@ -46,10 +46,10 @@ jobs:
             - name: Start Angular app
               working-directory: front
               run:
-                cmd /C "start /B npx ng serve --configuration=production --port=4200"
+                npx ng serve --configuration=production --port=4200
 
             - name: Wait for server to be ready
-              run: |
+              run:
                 npx wait-on http://localhost:4200 --timeout 60000 --interval 5000
 
             - name: Run E2E tests
@@ -58,8 +58,7 @@ jobs:
                 npx cypress run --headless --browser chrome || true
 
             - name: Upload E2E test results
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
-                working-directory: front
                 name: e2e-test-results
-                path: e2e-test-results/*
+                path: front/e2e-test-results/*
