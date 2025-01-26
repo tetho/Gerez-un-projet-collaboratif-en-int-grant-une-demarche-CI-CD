@@ -28,6 +28,20 @@ jobs:
               working-directory: back
               run: 
                 mvn clean install
+
+            - name: Cache SonarQube packages
+              uses: actions/cache@v4
+              with:
+                path: ~/.sonar/cache
+                key: ${{ runner.os }}-sonar
+                restore-keys: ${{ runner.os }}-sonar
+                
+            - name: Cache Maven packages
+              uses: actions/cache@v4
+              with:
+                path: ~/.m2
+                key: ${{ runner.os }}-m2-${{ hashFiles('**/back/pom.xml') }}
+                restore-keys: ${{ runner.os }}-m2
               
             - name: Run tests with Jacoco coverage report
               working-directory: back
