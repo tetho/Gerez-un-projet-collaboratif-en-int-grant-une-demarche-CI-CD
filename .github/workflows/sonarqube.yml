@@ -48,12 +48,12 @@ jobs:
                 npx sonar-scanner \
                   -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD \
                   -Dsonar.organization=tetho \
+                  -Dsonar.moduleKey=front-end \
                   -Dsonar.host.url=https://sonarcloud.io \
-                  -Dsonar.moduleKey=front \
-                  -Dsonar.sources=front/src \
-                  -Dsonar.exclusions=**/front/*.spec.ts \
+                  -Dsonar.sources=src \
+                  -Dsonar.exclusions=**/*.spec.ts \
                   -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info/lcov-report.info
-
+                  
   backend-sonarqube:
         name: Back-end SonarQube analysis  
         runs-on: ubuntu-latest
@@ -89,8 +89,8 @@ jobs:
                   -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD \
                   -Dsonar.organization=tetho \
                   -Dsonar.host.url=https://sonarcloud.io \
-                  -Dsonar.moduleKey=back \
+                  -Dsonar.moduleKey=back-end \
                   -Dsonar.branch.name=${{ github.ref_name }} \
-                  -Dsonar.java.binaries=back/target/classes \
-                  -Dsonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml \
+                  -Dsonar.java.binaries=target/classes \
+                  -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml \
                   -Dsonar.java.coveragePlugin=jacoco
