@@ -13,7 +13,7 @@ jobs:
         runs-on: windows-latest
         
         steps:
-            - name : Clone the repository into the GitHub Actions runner environment
+            - name: Clone the repository into the GitHub Actions runner environment
               uses: actions/checkout@v3
 
             - name: Set up Node.js
@@ -27,24 +27,25 @@ jobs:
                 npm install
 
             - name: Run tests with test coverage report
-              run: |
-                cd front
+              working-directory: front
+              run:
                 npx ng test --watch=false --code-coverage=true
                 
             - name: Upload coverage report
               uses: actions/upload-artifact@v3
               with:
+                working-directory: front
                 name: angular-coverage-report
-                path: front/coverage/*
+                path: coverage/*
 
             - name: Build the Angular app for E2E tests
-              run: |
-                cd front
+              working-directory: front
+              run:
                 npx ng build --configuration=production
 
             - name: Start Angular app
-              run: |
-                cd front
+              working-directory: front
+              run:
                 cmd /C "start /B npx ng serve --configuration=production --port=4200"
 
             - name: Wait for server to be ready
@@ -52,12 +53,13 @@ jobs:
                 npx wait-on http://localhost:4200 --timeout 60000 --interval 5000
 
             - name: Run E2E tests
-              run: |
-                cd front
+              working-directory: front
+              run:
                 npx cypress run --headless --browser chrome || true
 
             - name: Upload E2E test results
               uses: actions/upload-artifact@v3
               with:
+                working-directory: front
                 name: e2e-test-results
-                path: front/e2e-test-results/*
+                path: e2e-test-results/*
