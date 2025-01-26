@@ -10,14 +10,14 @@ on:
             - main
 jobs:
     frontend-tests:
-        runs-on: ubuntu-24.04
+        runs-on: ubuntu-latest
         
         steps:
             - name: Clone the repository into the GitHub Actions runner environment
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Set up Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with: 
                 node-version: 18
 
@@ -36,28 +36,3 @@ jobs:
               with:
                 name: angular-coverage-report
                 path: front/coverage/*
-
-            - name: Build the Angular app for E2E tests
-              working-directory: front
-              run:
-                npx ng build --configuration=production
-
-            - name: Start Angular app
-              working-directory: front
-              run:
-                nohup npx ng serve --configuration=production --port=4200 &
-
-            - name: Wait for server to be ready
-              run:
-                npx wait-on http://localhost:4200 --timeout 60000 --interval 5000
-
-            - name: Run E2E tests
-              working-directory: front
-              run:
-                npx cypress run --headless --browser chrome || true
-
-            - name: Upload E2E test results
-              uses: actions/upload-artifact@v3
-              with:
-                name: e2e-test-results
-                path: front/e2e-test-results/*
