@@ -53,7 +53,7 @@ jobs:
                 SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
               working-directory: back
               run:
-                mvn -B clean verify sonar:sonar \
+                mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
                   -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD \
                   -Dsonar.organization=tetho \
                   -Dsonar.host.url=https://sonarcloud.io \
