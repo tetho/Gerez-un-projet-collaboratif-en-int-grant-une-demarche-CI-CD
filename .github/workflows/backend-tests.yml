@@ -9,11 +9,11 @@ on:
         branches:
             - main
 jobs:
-    backend-tests:
-        runs-on: windows-latest
+    tests:
+        runs-on: ubuntu-latest
         
         steps:
-            - name : Clone the repository into the GitHub Actions runner environment
+            - name: Clone the repository into the GitHub Actions runner environment
               uses: actions/checkout@v3
 
             - name: Set up JDK 17
@@ -23,17 +23,18 @@ jobs:
                 distribution: zulu
 
             - name : Install dependencies
-              run : |
-                cd back
+              working-directory: back
+              run: 
                 mvn clean install
               
             - name: Run tests with Jacoco coverage report
-              run: |
-                cd back
+              working-directory: back
+              run:
                 mvn test jacoco:report
 
             - name: Upload Jacoco report
               uses: actions/upload-artifact@v3
               with:
+                working-directory: back
                 name: jacoco-report
-                path: back/target/site/jacoco/*
+                path: target/site/jacoco/*
