@@ -13,7 +13,7 @@ jobs:
         runs-on: ubuntu-latest
         
         steps:
-            - name : Clone the repository into the GitHub Actions runner environment
+            - name: Clone the repository into the GitHub Actions runner environment
               uses: actions/checkout@v4
               with:
                 fetch-depth: 0
@@ -47,7 +47,7 @@ jobs:
               env:
                 SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
               working-directory: back
-              run: |
+              run:
                mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
                 -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD \
                 -Dsonar.organization=tetho \
