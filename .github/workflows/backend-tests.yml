@@ -10,7 +10,7 @@ on:
             - main
 jobs:
     tests:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-24.04
         
         steps:
             - name: Clone the repository into the GitHub Actions runner environment
@@ -35,6 +35,5 @@ jobs:
             - name: Upload Jacoco report
               uses: actions/upload-artifact@v3
               with:
-                working-directory: back
                 name: jacoco-report
-                path: target/site/jacoco/*
+                path: back/target/site/jacoco/*
