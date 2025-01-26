@@ -22,7 +22,7 @@ jobs:
                 java-version: 17
                 distribution: zulu
 
-            - name : Install dependencies
+            - name: Install dependencies
               working-directory: back
               run: 
                 mvn clean install
