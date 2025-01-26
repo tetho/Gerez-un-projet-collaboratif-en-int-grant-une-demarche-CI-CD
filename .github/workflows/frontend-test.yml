@@ -14,10 +14,10 @@ jobs:
         
         steps:
             - name: Clone the repository into the GitHub Actions runner environment
-              uses: actions/checkout@v4
+              uses: actions/checkout@v3
 
             - name: Set up Node.js
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@v3
               with: 
                 node-version: 18
 
@@ -34,7 +34,6 @@ jobs:
             - name: Upload coverage report
               uses: actions/upload-artifact@v4
               with:
-                working-directory: front
                 name: angular-coverage-report
                 path: front/coverage/*
 
@@ -46,7 +45,7 @@ jobs:
             - name: Start Angular app
               working-directory: front
               run:
-                npx ng serve --configuration=production --port=4200
+                nohup npx ng serve --configuration=production --port=4200 &
 
             - name: Wait for server to be ready
               run:
@@ -58,7 +57,7 @@ jobs:
                 npx cypress run --headless --browser chrome || true
 
             - name: Upload E2E test results
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v3
               with:
                 name: e2e-test-results
                 path: front/e2e-test-results/*
