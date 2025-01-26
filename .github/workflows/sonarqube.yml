@@ -46,9 +46,10 @@ jobs:
               run: |
                 npm install -g sonar-scanner
                 npx sonar-scanner \
-                  -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD-front-end \
+                  -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD \
                   -Dsonar.organization=tetho \
                   -Dsonar.host.url=https://sonarcloud.io \
+                  -Dsonar.moduleKey=front-end \
                   -Dsonar.sources=src \
                   -Dsonar.exclusions=**/*.spec.ts \
                   -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info/lcov-report.info
@@ -85,9 +86,10 @@ jobs:
               working-directory: back
               run: |
                 mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-                  -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD-back-end \
+                  -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD \
                   -Dsonar.organization=tetho \
                   -Dsonar.host.url=https://sonarcloud.io \
+                  -Dsonar.moduleKey=front-end \
                   -Dsonar.branch.name=${{ github.ref_name }} \
                   -Dsonar.java.binaries=target/classes \
                   -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml \
