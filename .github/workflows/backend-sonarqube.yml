@@ -38,8 +38,8 @@ jobs:
               env:
                 SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
               working-directory: back
-              run:
-                mvn clean install -U sonar:sonar \
+              run: |
+                mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
                   -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD \
                   -Dsonar.organization=tetho \
                   -Dsonar.host.url=https://sonarcloud.io \
