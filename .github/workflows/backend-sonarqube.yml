@@ -10,7 +10,6 @@ on:
             - main
 jobs:
     sonarqube:
-        name: SonarQube analysis  
         runs-on: ubuntu-latest
         
         steps:
