@@ -9,12 +9,18 @@ on:
         branches:
             - main
 jobs:
-    sonarqube:
+    quality:
         runs-on: ubuntu-latest
         
         steps:
             - name: Clone the repository into the GitHub Actions runner environment
               uses: actions/checkout@v4
+
+            - name: Download coverage report artifact
+              uses: actions/download-artifact@v4
+              with:
+                name: angular-coverage-report
+                path: front/coverage/
 
             - name: Run SonarCloud analysis
               env:
