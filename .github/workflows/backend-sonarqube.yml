@@ -17,6 +17,22 @@ jobs:
               uses: actions/checkout@v4
               with:
                 fetch-depth: 0
+
+            - name: Set up JDK 11
+              uses: actions/setup-java@v4
+              with: 
+                java-version: 11
+                distribution: zulu
+
+            - name: Install dependencies
+              working-directory: back
+              run: 
+                mvn clean install
+              
+            - name: Run tests with Jacoco coverage report
+              working-directory: back
+              run:
+                mvn test jacoco:report
                 
             - name: Build and analyze
               env:
