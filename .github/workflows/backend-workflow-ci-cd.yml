@@ -35,7 +35,7 @@ jobs:
             - name: Upload Jacoco report
               uses: actions/upload-artifact@v4
               with:
-                name: jacoco-report
+                name: tests-jacoco-report
                 path: back/target/site/jacoco/*
 
     sonarqube:
@@ -44,8 +44,6 @@ jobs:
         steps:
             - name: Clone the repository into the GitHub Actions runner environment
               uses: actions/checkout@v4
-              with:
-                fetch-depth: 0
                 
             - name: Build and analyze
               env:
@@ -64,7 +62,7 @@ jobs:
             - name: Upload Jacoco report
               uses: actions/upload-artifact@v4
               with:
-                name: jacoco-report
+                name: quality-jacoco-report
                 path: back/target/site/jacoco/*
 
     docker:
