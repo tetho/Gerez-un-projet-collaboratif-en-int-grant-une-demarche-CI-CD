@@ -38,7 +38,7 @@ jobs:
                 name: tests-jacoco-report
                 path: back/target/site/jacoco/*
 
-    sonarqube:
+    quality:
         runs-on: ubuntu-latest
         
         steps:
