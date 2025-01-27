@@ -1,4 +1,4 @@
-name: Front-end - Tests and coverage report
+name: Front-end - Tests
 
 on:
     workflow_dispatch:
