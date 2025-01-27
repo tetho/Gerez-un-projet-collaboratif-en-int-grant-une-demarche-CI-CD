@@ -27,9 +27,9 @@ jobs:
                 password: ${{ secrets.DOCKER_PASSWORD }}
 
             - name: Build Docker Image
-              working-directory: back
-              run:
-                docker build -t bobapp-back .
+              run: |
+                cd back
+                docker build -t ${{ secrets.DOCKER_USERNAME }}/bobapp-back:latest .
         
             - name: Push Docker Image
               run:
