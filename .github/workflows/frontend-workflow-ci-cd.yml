@@ -24,7 +24,7 @@ jobs:
 
             - name: Build Docker Image
               run:
-                docker build -t ${{ secrets.DOCKER_USERNAME }}/bobapp-back:latest -f ./front/Dockerfile ./front
+                docker build -t ${{ secrets.DOCKER_USERNAME }}/bobapp-front:latest -f ./front/Dockerfile ./front
         
             - name: Push Docker Image
               run:
