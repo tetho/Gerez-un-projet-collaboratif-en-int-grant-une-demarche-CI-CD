@@ -1,4 +1,4 @@
-name: Back-end - SonarQube analysis
+name: Back-end - Quality
 
 on:
     workflow_dispatch:
