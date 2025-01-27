@@ -1,4 +1,4 @@
-name: Back-end tests and Jacoco coverage report
+name: Back-end - Tests and coverage report
 
 on:
     workflow_dispatch:
