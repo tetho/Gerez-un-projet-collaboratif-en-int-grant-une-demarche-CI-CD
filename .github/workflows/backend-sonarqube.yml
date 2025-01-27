@@ -10,6 +10,7 @@ on:
             - main
 jobs:
     sonarqube:
+        name: Back-end SonarQube analysis  
         runs-on: ubuntu-latest
         
         steps:
@@ -27,7 +28,7 @@ jobs:
             - name: Install dependencies
               working-directory: back
               run: 
-                mvn clean install -U
+                mvn clean install
               
             - name: Run tests with Jacoco coverage report
               working-directory: back
@@ -36,14 +37,21 @@ jobs:
                 
             - name: Build and analyze
               env:
-                SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+                SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACKEND }}
               working-directory: back
               run: |
                 mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
                   -Dsonar.projectKey=Gerez-un-projet-collaboratif-en-integrant-une-demarche-CI-CD \
                   -Dsonar.organization=tetho \
                   -Dsonar.host.url=https://sonarcloud.io \
+                  -Dsonar.moduleKey=back \
                   -Dsonar.branch.name=${{ github.ref_name }} \
                   -Dsonar.java.binaries=target/classes \
                   -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml \
                   -Dsonar.java.coveragePlugin=jacoco
+
+            - name: Upload Jacoco report
+              uses: actions/upload-artifact@v4
+              with:
+                name: jacoco-report
+                path: back/target/site/jacoco/*
