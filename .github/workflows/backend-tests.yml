@@ -1,4 +1,4 @@
-name: Back-end - Tests and coverage report
+name: Back-end - Tests
 
 on:
     workflow_dispatch:
