@@ -49,6 +49,16 @@ jobs:
               with: 
                 node-version: 18
 
+            - name: Install dependencies
+              working-directory: front
+              run:
+                npm install
+
+            - name: Run tests with test coverage report
+              working-directory: front
+              run:
+                npx ng test --watch=false --code-coverage=true
+
             - name: Run SonarCloud analysis
               env:
                 SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONTEND }}
