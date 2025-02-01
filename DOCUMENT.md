@@ -79,15 +79,21 @@ En résolvant tous les Security Hotspots, les risques d'attaques ou de fuites de
 ### 3.1 Analyse des métriques
 #### _3.1.1 Front-end_
 ![Code coverage](./images/code-coverage-front-end.JPG)
+
 La couverture de code de 47,6 % est trop basse. Il est recommandé d’ajouter davantage de tests unitaires, d'intégration et de tests fonctionnels pour atteindre au moins 80% de couverture de code.
 
 #### _3.1.2 Back-end_
 ![Code coverage](./images/code-coverage-back-end.JPG)
+
 La couverture de code de 38,8 % est également trop basse. Comme pour la partie front-end, il faudrait prioriser les tests sur les parties les plus critiques du code, telles que celles qui touchent aux fonctionnalités principales, afin d’atteindre au moins 80% de couverture de code.
+
 ![Issues](./images/issue-back-end.JPG)
+
 Ce message d’erreur indique que le code utilise un objet Random de manière inefficace en le créant à chaque appel de la méthode. En effet, la création répétée d'instances de Random peut entraîner une perte de performance, surtout dans un contexte où la méthode est appelée fréquemment, car la création d'un objet Random est relativement coûteuse. 
 Afin de corriger ce problème, il faudrait déclarer l'objet Random en tant que membre de la classe, et l'initialiser une seule fois dans le constructeur ou directement lors de sa déclaration.
+
 ![Security Hotspots](./images/security-hotspots-back-end.JPG)
+
 Enfin, il reste 2 problèmes de type Security Hotspot à corriger pour atteindre un résultat de 100 % contre 0 % actuellement.
 Le première recommandation serait d’utiliser SecureRandom au lieu de Random pour améliorer la sécurité de la génération de nombre aléatoire.
 Le deuxième message indique qu’une fonctionnalité de debug devrait être désactivée avant de mettre le code en production.
