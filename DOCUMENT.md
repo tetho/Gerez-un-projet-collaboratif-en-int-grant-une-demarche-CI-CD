@@ -31,11 +31,7 @@ L'outil SonarQube est configuré dans le pipeline CI en installant et configuran
 - Authentification auprès de SonarQube : 
 Pour que l’analyse de qualité fonctionne, on doit fournir un jeton d'authentification SonarQube via un secret GitHub (SONAR_TOKEN).
 - Exécution de l’analyse de code avec SonarQube :
-L’action SonarSource/sonarcloud-github-action ou une action personnalisée est utilisée pour lancer l’analyse de la qualité du code avec SonarQube. Cette analyse peut inclure :
--- L’analyse des duplications de code
--- L’identification de vulnérabilités de sécurité
--- Le calcul de la couverture des tests
--- L’analyse des règles de code
+L’action SonarSource/sonarcloud-github-action ou une action personnalisée est utilisée pour lancer l’analyse de la qualité du code avec SonarQube. Cette analyse peut inclure l’analyse des duplications de code, l’identification de vulnérabilités de sécurité, le calcul de la couverture des tests, l’analyse des règles de code.
 - Génération du rapport SonarQube :
 Une fois l’analyse effectuée, les résultats sont envoyés à SonarQube où ils peuvent être consultés sous forme de rapport détaillé.
 
@@ -45,13 +41,13 @@ L’objectif de ce workflow est d’automatiser le processus de build, de test e
 
 #### _1.3.2 Étapes_
 - Déclencheur :
- -- Ce workflow est généralement déclenché à chaque push vers la branche principale ou une branche de version.
+Ce workflow est généralement déclenché à chaque push vers la branche principale ou une branche de version.
 - Authentification Docker Hub :
--- Avant de pousser une image Docker sur Docker Hub, il est nécessaire de s'authentifier à Docker Hub à l’aide d’un identifiant et d’un mot de passe, généralement stockés en tant que secrets GitHub (DOCKER_USERNAME et DOCKER_PASSWORD).
+Avant de pousser une image Docker sur Docker Hub, il est nécessaire de s'authentifier à Docker Hub à l’aide d’un identifiant et d’un mot de passe, généralement stockés en tant que secrets GitHub (DOCKER_USERNAME et DOCKER_PASSWORD).
 - Construction de l’image Docker :
--- L’image Docker est construite en utilisant un fichier Dockerfile présent dans le dépôt. La commande docker build est exécutée pour créer l’image avec un tag approprié (par exemple, myapp:latest).
+L’image Docker est construite en utilisant un fichier Dockerfile présent dans le dépôt. La commande docker build est exécutée pour créer l’image avec un tag approprié (par exemple, myapp:latest).
 - Envoi de l’image sur Docker Hub :
- -- Une fois l’image Docker construite, l’image est poussée vers Docker Hub en utilisant la commande docker push.
+Une fois l’image Docker construite, l’image est poussée vers Docker Hub en utilisant la commande docker push.
 
 ## 2. KPI proposés
 ### 2.1 Couverture de code
@@ -60,19 +56,26 @@ Le couverture de code est un KPI essentiel qui permet de mesurer la proportion d
 
 #### _2.1.2 Seuil_
 Le seuil minimum recommandé pour le code coverage est de 80%. Cela signifie que 80% du code doit être testé par des tests unitaires, d'intégration ou autres types de tests automatisés.
+
 Ce seuil assure qu’une couverture importante est obtenue, réduisant ainsi le risque de bugs non détectés dans le code.
+
 Un taux de couverture trop bas pourrait indiquer que des parties importantes du code ne sont pas couvertes par des tests et qu'il existe des risques de régressions ou de défaillances dans les fonctionnalités.
+
 Si le code coverage descend en dessous de 80%, une alerte sera déclenchée. Le but est de forcer l’équipe de développement à ajouter des tests supplémentaires pour garantir que le code est suffisamment testé avant de procéder à un déploiement ou une mise en production.
 
 ### 2.2 Security Hotspots
 #### _2.2.1 Objectif_
 L'objectif de ce KPI est de garantir que tous les Security Hotspots identifiés dans le code sont évalués et résolus afin d'assurer une sécurité maximale du projet.
+
 Un Security Hotspot est une partie du code qui présente un risque potentiel pour la sécurité. Ce KPI mesure le pourcentage de ces zones de risque qui ont été inspectées, corrigées ou validées par les développeurs pour garantir qu'aucune menace n'est présente.
 
 #### _2.2.2 Seuil_
 Le seuil recommandé est de 100 % des Security Hotspots devant être inspectés et résolus. Cela implique que tous les Security Hotspots signalés par SonarQube doivent tous être traités.
+
 Ce KPI permet d'assurer que le code est examiné pour des vulnérabilités potentielles et qu'aucune zone de risque n'est négligée.
+
 Il garantit que l'application respecte les normes de sécurité requises, ce qui est essentiel dans des environnements de production sensibles.
+
 En résolvant tous les Security Hotspots, les risques d'attaques ou de fuites de données liées à des vulnérabilités non corrigées sont minimisés.
 
 ## 3. Analyse des métriques et des avis utilisateurs
@@ -90,12 +93,15 @@ La couverture de code de 38,8 % est également trop basse. Comme pour la partie
 ![Issues](./images/issue-back-end.JPG)
 
 Ce message d’erreur indique que le code utilise un objet Random de manière inefficace en le créant à chaque appel de la méthode. En effet, la création répétée d'instances de Random peut entraîner une perte de performance, surtout dans un contexte où la méthode est appelée fréquemment, car la création d'un objet Random est relativement coûteuse. 
+
 Afin de corriger ce problème, il faudrait déclarer l'objet Random en tant que membre de la classe, et l'initialiser une seule fois dans le constructeur ou directement lors de sa déclaration.
 
 ![Security Hotspots](./images/security-hotspots-back-end.JPG)
 
 Enfin, il reste 2 problèmes de type Security Hotspot à corriger pour atteindre un résultat de 100 % contre 0 % actuellement.
+
 Le première recommandation serait d’utiliser SecureRandom au lieu de Random pour améliorer la sécurité de la génération de nombre aléatoire.
+
 Le deuxième message indique qu’une fonctionnalité de debug devrait être désactivée avant de mettre le code en production.
 
 ### 3.2 Analyse des avis utilisateurs
