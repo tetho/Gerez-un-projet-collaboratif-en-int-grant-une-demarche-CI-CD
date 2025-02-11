@@ -3,7 +3,7 @@ name: Back-end - Workflow CI/CD
 on:
     workflow_dispatch:
     workflow_run:
-        workflows: ["Back-end - Tests"]
+        workflows: ["Back-end - Quality"]
         types:
           - completed
 jobs:
