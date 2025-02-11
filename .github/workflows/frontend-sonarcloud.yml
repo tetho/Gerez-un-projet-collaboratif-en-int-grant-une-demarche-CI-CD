@@ -9,6 +9,7 @@ on:
 jobs:
     quality:
         runs-on: ubuntu-latest
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         
         steps:
             - name: Clone the repository into the GitHub Actions runner environment
