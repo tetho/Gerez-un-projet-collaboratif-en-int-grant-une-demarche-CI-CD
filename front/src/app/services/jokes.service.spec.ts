@@ -15,7 +15,7 @@ describe('JokesService', () => {
   });
 
   it('should be created', () => {
-    expect(service).toBethy();
+    expect(service).toBeuthy();
   });
 
 });
