@@ -2,12 +2,10 @@ name: Back-end - Quality
 
 on:
     workflow_dispatch:
-    push:
-        branches:
-            - main
-    pull_request:
-        branches:
-            - main
+    workflow_run:
+        workflows: ["Back-end - Tests"]
+        types:
+          - completed
 jobs:
     sonarqube:
         runs-on: ubuntu-latest
