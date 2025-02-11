@@ -2,12 +2,10 @@ name: Front-end - Workflow CI/CD
 
 on:
     workflow_dispatch:
-    push:
-        branches:
-            - main
-    pull_request:
-        branches:
-            - main
+    workflow_run:
+        workflows: ["Front-end - Quality"]
+        types:
+          - completed
 jobs:
     tests:
         runs-on: ubuntu-latest
