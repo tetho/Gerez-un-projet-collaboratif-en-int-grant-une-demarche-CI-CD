@@ -1,7 +1,5 @@
 package com.openclassrooms.bobapp;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -12,8 +10,4 @@ class BobappApplicationTests {
 	void contextLoads() {
 	}
 
-	 @Test
-	 public void testKO() {
-	    assertEquals(0, 1, "KO");
-	 }
 }
