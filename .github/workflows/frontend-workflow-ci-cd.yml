@@ -14,7 +14,7 @@ on:
             - 'front/**'
     
 jobs:
-    tests:
+    front-end-tests:
         runs-on: ubuntu-latest
                 
         steps:
@@ -42,7 +42,7 @@ jobs:
                 name: tests-coverage-report
                 path: front/coverage/*
 
-    quality:
+    front-end-quality:
         runs-on: ubuntu-latest
         needs: tests
         
@@ -85,7 +85,7 @@ jobs:
                 name: quality-coverage-report
                 path: front/coverage/*
 
-    docker:
+    front-end-docker:
         runs-on: ubuntu-latest
         needs: quality
         
