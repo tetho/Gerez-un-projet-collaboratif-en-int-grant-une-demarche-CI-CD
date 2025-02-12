@@ -14,7 +14,7 @@ on:
             - 'back/**'
     
 jobs:
-    tests:
+    back-end-tests:
         runs-on: ubuntu-latest
         
         steps:
@@ -43,7 +43,7 @@ jobs:
                 name: tests-jacoco-report
                 path: back/target/site/jacoco/*
 
-    quality:
+    back-end-quality:
         runs-on: ubuntu-latest
         needs: tests
         
@@ -71,7 +71,7 @@ jobs:
                 name: quality-jacoco-report
                 path: back/target/site/jacoco/*
 
-    docker:
+    back-end-docker:
         runs-on: ubuntu-latest
         needs: quality
         
