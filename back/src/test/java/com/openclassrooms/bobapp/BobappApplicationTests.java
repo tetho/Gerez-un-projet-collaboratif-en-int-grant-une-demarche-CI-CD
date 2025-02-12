@@ -12,9 +12,4 @@ class BobappApplicationTests {
 	void contextLoads() {
 	}
 
-	 @Test
-	 // Test KO
-	 public void testKO() {
-	    assertEquals(0, 1, "KO");
-	 }
 }
