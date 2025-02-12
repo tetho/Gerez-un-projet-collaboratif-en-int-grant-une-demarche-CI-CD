@@ -37,7 +37,7 @@ jobs:
 
     quality:
         runs-on: ubuntu-latest
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        needs: tests
         
         steps:
             - name: Clone the repository into the GitHub Actions runner environment
@@ -80,7 +80,7 @@ jobs:
 
     docker:
         runs-on: ubuntu-latest
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        needs: quality
         
         steps:
             - name: Clone the repository into the GitHub Actions runner environment
