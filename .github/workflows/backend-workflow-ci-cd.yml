@@ -2,10 +2,17 @@ name: Back-end - Workflow CI/CD
 
 on:
     workflow_dispatch:
-    workflow_run:
-        workflows: ["Back-end - Quality"]
-        types:
-          - completed
+    push:
+        branches:
+            - main
+        paths:
+            - 'back/**'
+    pull_request:
+        branches:
+            - main
+        paths:
+            - 'back/**'
+    
 jobs:
     tests:
         runs-on: ubuntu-latest
